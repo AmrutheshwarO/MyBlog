@@ -1,0 +1,20 @@
+<%- include('partials/header'); -%>
+
+<h1>Home</h1>
+<p><%= homeStartingContent %></p>
+<% if(posts.length != 0) { %>
+<h1>Your posts</h1>
+<ul style="list-style-type: none; padding: 0;">
+    <% posts.forEach(function(post) { %>
+    <li>
+        <h2><%= post.composeTitle %></h2>
+        <p><%= post.composePost.substring(0, 100) + "...  " %><a href="/posts/<%= post.composeTitle %>">Read More</a>
+        </p>
+    </li>
+    <% }); %>
+</ul>
+<% } else { %>
+<h1>You have no posts yet</h1>
+<% } %>
+
+<%- include('partials/footer'); -%>
