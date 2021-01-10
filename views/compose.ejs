@@ -1,12 +1,34 @@
 <%- include('partials/header')  -%>
 
+<% if(posts.length != 0) { %>
+<h1>Your posts</h1>
+<h4>Check the checkbox to delete the post</h4>
+<ul style="list-style-type: none; padding: 0;">
+    <% posts.forEach(function(post) { %>
+    <form action="/delete" method="POST">
+        <li>
+            <div class="postsRows">
+                <input type="checkbox" name="postCheckboxId" id="postCheckboxId" value="<%= post._id %>" onchange="this.form.submit()">
+                <div class="posts">
+                    <h2><%= post.postTitle %></h2>
+                    <p><%= post.postContent.substring(0, 100) + "...  " %><a href="/posts/<%= post.postTitle %>">Read More</a>
+                </div>
+            </div>
+            </p>
+        </li>
+    </form>
+    <% }); %>
+</ul>
+<% } else { %>
+<h1>You have no posts yet</h1>
+<% } %>
 <h1>Compose</h1>
 <form action="/compose" method="POST">
     <div class="form-group">
-        <label for="comeposeTitle">Title</label>
-        <input type="text" name="composeTitle" id="composeTitle" class="form-control" placeholder="Your tilte goes here">
-        <label for="composeText">Post</label>
-        <textarea type="text" name="composePost" id="composePost" class="form-control" placeholder="Your post goes here" rows="8"></textarea>
+        <label for="postTitle">Title</label>
+        <input type="text" name="postTitle" id="postTitle" class="form-control" placeholder="Your title goes here">
+        <label for="postContent">Post</label>
+        <textarea type="text" name="postContent" id="postContent" class="form-control" placeholder="Your post goes here" rows="8"></textarea>
     </div>
     <button type="submit" class="btn btn-lg btn-primary">Publish</button>
 </form>

@@ -17,6 +17,20 @@
     color: #1abc9c !important;
 }
 
+.postsRows {
+    display: flex;
+    align-items: center;
+}
+
+.posts {
+    padding-left: 2rem;
+}
+
+.composePostContent {
+    margin: 0;
+    padding: 0 0 1rem;
+}
+
 .footer-padding {
     padding-bottom: 60px;
 }
